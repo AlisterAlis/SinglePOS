@@ -1,0 +1,16 @@
+{
+  "name": "simplepos",
+  "version": "1.0.0",
+  "description": "SPA POS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spa",
+    "pos"
+  ],
+  "author": "\"Jayson Werner",
+  "license": "ISC",
+  "type": "module"
+}

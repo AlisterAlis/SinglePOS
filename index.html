@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single POS</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/bootstrap.min.css'>
+<!--<style>
+      #POSItemRows div.row:nth-child(odd) {
+        background: red;
+      }
+
+    </style>
+-->
+
+</head>
+<body>
+    <div class="container" style="min-width: 350px; padding-top: 20px;">
+        
+        <!--Barcode Input Box-->
+        <form id="frmScanBarcode" autocomplete="off" class="p-0 bg-light">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Scan Barcode</span>
+            <input id="inScanBarcode" type="text" class="form-control" aria-label="Sizing example input" autocomplete="off" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </form>
+        <!--Search Box-->
+        <div class="dropdown-menu d-block position-static pt-0 mb-3 mx-0 rounded-3 shadow overflow-hidden w-280px">
+            <form id="frmSearchItem" autocomplete="off" class="p-2 bg-light border-bottom">
+              <input id="inSearchBox" type="search" class="form-control" autocomplete="off" placeholder="Search...">
+            </form>
+            <div id="ulSearchResults">
+              <!--
+              <ul class="list-unstyled mb-0">
+                <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#">
+                  <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                  0000001 - First Item
+                </a></li>
+              </ul>
+              -->
+            </div>
+          </div>
+
+        <!--Headers-->
+        <div class="row row-cols-1 row-cols-md-5 mb-3 text-center">
+        <div class="col-md-2 p-0 ps-1"> <!--Barcode-->
+            <div class="card mb-2 rounded-3 shadow-sm">
+            <div class="card-header py-3 bg-light">
+                <h4 class="my-0 fw-normal">Barcode</h4>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-4 p-0 px-1"> <!--Description-->
+            <div class="card mb-2 rounded-3 shadow-sm">
+            <div class="card-header py-3 bg-light">
+                <h4 class="my-0 fw-normal">Description</h4>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-2 p-0 ps-0"> <!--Item Price-->
+            <div class="card mb-2 rounded-3 shadow-sm ">
+            <div class="card-header py-3 bg-light">
+                <h4 class="my-0 fw-normal">Item Price</h4>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-2 p-0 ps-2"> <!--Quanity-->
+            <div class="card mb-2 rounded-3 shadow-sm ">
+            <div class="card-header py-3 bg-light">
+                <h4 class="my-0 fw-normal">Quantity</h4>
+            </div>
+            </div>
+        </div>      
+        <div class="col-md-2 p-0 ps-2"> <!--Line Total-->
+            <div class="card mb-2 rounded-3 shadow-sm ">
+            <div class="card-header py-3 bg-light">
+                <h4 class="my-0 fw-normal">Line Total</h4>
+            </div>
+            </div>
+        </div>  
+        </div>
+
+        <div id="POSItemRows">
+
+            <!--Item 1-->
+            <div id="itemRow1" class="row row-cols-1 row-cols-md-5 mb-1 text-center">
+              <div class="col-md-2 p-0 ps-1 "> <!--Barcode-->
+                <div class="card mb-1 rounded-3 shadow-sm">
+                    <div id="lblItemBarcode" class="card-body">
+                      <small class="text-muted fw-light">00000001</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 p-0 px-1"> <!--Description-->
+                  <div class="card mb-1 rounded-3 shadow-sm">
+                    <div id="lblItemDescription" class="card-body text-start">
+                        First Item Description
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 p-0 ps-0"> <!--Item Price-->
+                  <div class="card mb-1 rounded-3 shadow-sm ">
+                    <div id="lblItemPrice" class="card-body">
+                      <b>R25</b>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 p-0 ps-2"> <!--Quanity-->
+                  <div class="card mb-1 rounded-3 shadow-sm ">
+                    <div class="card-body">
+                      <div class="row row-cols-1 row-cols-sm-3 mb-0 text-center">
+                        <div class="col">
+                          <button id="btnItemQtyDec" class="btn btn-danger btn-outline-dark py-0 px-1">-</b>
+                        </div>
+                        <div id="lblItemQty" class="col">
+                          <b>2</b>
+                        </div>
+                        <div class="col">
+                          <button id="btnItemQtyInc" class="btn btn-success btn-outline-dark py-0 px-1">+</b>
+                        </div>                    
+                      </div>
+                    </div>
+                  </div>
+                </div>    
+                <div class="col-md-2 p-0 ps-2"> <!--Line Total-->
+                  <div class="card mb-1 rounded-3 shadow-sm ">
+                    <div class="card-body">
+                      <div class="row row-cols-1 row-cols-sm-4 mb-0 text-center">
+                        <div id="lblItemLineTotal" class="col-sm-10 text-end">
+                          <b>R50</b>
+                        </div>
+                        <div class="col-sm-1">
+                          <button id="btnItemVoid" class="btn btn-danger btn-outline-dark py-0 px-1">X</b>
+                        </div>                    
+                      </div>
+                    </div>
+                  </div>
+                </div>                      
+            </div>       
+          </div>
+        <!--Total-->
+        <div class="row row-cols-1 row-cols-md-5 mb-1 text-center">
+          <div class="col-md-2 p-0 ps-1 mt-2 fs-3 text-primary"> <!--Barcode-->
+            <b><u>Cash Payment</u></b>
+            </div>
+            <div class="col-md-4 p-0 px-1 mt-2 fs-3 text-primary"> <!--Description-->
+              <b><u>Card Payment</u></b>
+            </div>
+            <div class="col-md-2 p-0 ps-0"> <!--Item Price-->
+
+            </div>
+            <div class="col-md-2 p-0 ps-2 fs-2 mt-1 text-end"> <!--Quanity-->
+                      <b>Total:</b>
+            </div>    
+            <div class="col-md-2 p-0 ps-2"> <!--Line Total-->
+              <div class="card mb-1 rounded-3 shadow-sm ">
+                <div class="card-body">
+                  <div class="row row-cols-1 row-cols-sm-4 mb-0 text-center">
+                    <div class="col-sm-10 text-end">
+                      <b id="txtTotal">R250</b>
+                    </div>
+                    <div class="col-sm-1">
+                      
+                    </div>                    
+                  </div>
+                </div>
+              </div>          
+            </div>                      
+        </div>
+
+        <!--Payment & Outstanding-->
+        <div class="row row-cols-1 row-cols-md-5 mb-1 text-center">
+          <div class="col-md-2 p-0 ps-1"> <!--Barcode-->
+            <form id="frmCash" class="p-1 bg-light border rounded-3">
+              <input id="inCashPayment" type="text" class="form-control text-center fw-bold" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="R0">
+            </form>             
+          </div>
+            <div class="col-md-4 p-0 px-1"> <!--Description-->
+              <div class="row row-cols-1 row-cols-sm-4 mb-0 text-center">
+                <div class="col-sm-3">
+                  
+                </div>                
+                <div class="col-sm-6 text-end text-danger ">
+                  <form id="frmCard" class="p-1 bg-light border rounded-3">
+                    <input id="inCardPayment" type="text" class="form-control text-center fw-bold" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="R0">
+                  </form>                  
+                </div>
+                <div class="col-sm-3">
+                  
+                </div>                    
+              </div>            
+            </div>
+            <div class="col-md-2 p-0 ps-0"> <!--Item Price-->
+
+            </div>
+            <div class="col-md-2 p-0 ps-2 fs-2 mt-1 text-end"> <!--Quanity-->
+                      <b>Outstanding:</b>
+            </div>    
+            <div class="col-md-2 p-0 ps-2"> <!--Line Total-->
+              <div class="card mb-1 rounded-3 shadow-sm ">
+                <div class="card-body">
+                  <div class="row row-cols-1 row-cols-sm-4 mb-0 text-center">
+                    <div class="col-sm-10 text-end text-danger">
+                      <b id="txtOutstanding"></b>
+                    </div>
+                    <div class="col-sm-1">
+                      
+                    </div>                    
+                  </div>
+                </div>
+              </div>          
+            </div>                      
+        </div>        
+
+        <!--Payment & Outstanding-->
+        <div class="row row-cols-1 row-cols-md-5 mb-1 text-center">
+          <div class="col-md-2 p-0 ps-1"> <!--Barcode-->
+            </div>
+            <div class="col-md-3 p-0 px-1"> <!--Description-->
+              <div class="row row-cols-1 row-cols-sm-4 mb-0 text-center">
+              </div> 
+            </div>
+            <div class="col-md-2 p-0 ps-0"> <!--Item Price-->
+
+            </div>
+            <div class="col-md-3 p-0 ps-2 fs-2 mt-0 text-end text-success "> <!--Quanity-->
+                <small id="lblChange" class="text-muted fw-light"><u>Change:</u></small>
+                <b id="txtChange" >R50</b>
+            </div>    
+            <div class="col-md-2 p-0 ps-0 "> <!--Line Total-->
+              <button id="btnFinishSale" class="btn-lg btn-danger">Finish Sale</button>
+            </div>                      
+        </div>           
+
+        <!--row template-->
+        <div class="row row-cols-1 row-cols-md-5 mb-1 text-center">
+          <div class="col-md-2 p-0 ps-1"> <!--Barcode-->
+
+            </div>
+            <div class="col-md-4 p-0 px-1"> <!--Description-->
+
+            </div>
+            <div class="col-md-2 p-0 ps-0"> <!--Item Price-->
+
+            </div>
+            <div class="col-md-2 p-0 ps-2"> <!--Quanity-->
+
+            </div>    
+            <div class="col-md-2 p-0 ps-2"> <!--Line Total-->
+            </div>                      
+        </div>  
+        
+        <!--<input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Search...">
+        -->
+        <!--test 1
+        <div class="row">
+        <div class="row row-cols-1 row-cols-md-5 mb-3 text-center">   
+          <div class="col-md-3 offset-md-8">    
+            <div class="card mb-1 rounded-3 shadow-sm ">
+              <div class="card-body">
+                <div class="row row-cols-1 row-cols-sm-4 mb-0 text-center">
+                  <div class="col-sm-10">
+                    <b>R50</b>
+                  </div>
+                  <div class="col-sm-1">
+                    <button class="btn btn-danger btn-outline-dark py-0 px-1">X</b>
+                  </div>                    
+                </div>
+              </div>
+          </div>
+        </div>     -->        
+</div>
+        </div>
+ 
+      
+    </div>
+</body>
+<footer><div id="htmlFooter"></div></footer>
+
+<script src="./js/bootstrap.min.js"></script>
+<script type="module" src="./js/pos.js"></script>
+
+</html>
