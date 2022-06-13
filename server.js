@@ -3,7 +3,7 @@ import url from 'url';
 import path from 'path';
 import fs from 'fs';
 
-    let port = process.argv[2] || 8888,
+    let port = process.env.port || 8888,
 
     mimeTypes = {
       "html": "text/html",
