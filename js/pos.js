@@ -1,4 +1,7 @@
 import { clsItemObj, clsItemLine } from './items.js';
+//let clsItems = require('items.js');
+
+//const fs = require('fs')
 
 const itemsArr = [
     new clsItemObj("000001", "First Item", 15),
