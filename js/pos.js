@@ -166,16 +166,30 @@ function DoPaymentCalculations(){
 
     let cashPayment = 0;
     let cardPayment = 0;
-    let totalSale = 0;
+    let totalSale = getSalesTotal();
 
+    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+    //totalSale = getSalesTotal();
     //.replace(/\D/g,'')
 
     document.getElementById("inCashPayment").value = document.getElementById("inCashPayment").value.replace(/\D/g,'');
     document.getElementById("inCardPayment").value = document.getElementById("inCardPayment").value.replace(/\D/g,'');
 
     cashPayment = document.getElementById("inCashPayment").value;
-    cardPayment = document.getElementById("inCardPayment").value;
-    totalSale = getSalesTotal();
+    cardPayment = clamp(document.getElementById("inCardPayment").value, 0, totalSale);
+    
+    
+    //console.log("Card payment clamp: " +cardPayment);
+
+    //Card Payments
+    document.getElementById("inCardPayment").value = Math.clamp
+    
+
+    document.getElementById("inCardPayment").value = cardPayment;
+    //cardPayment = document.getElementById("inCardPayment").value;
+
+
 
     let outstanding = totalSale - cardPayment - cashPayment;
 
@@ -186,7 +200,7 @@ function DoPaymentCalculations(){
     document.getElementById("txtOutstanding").innerText = (outstanding >= 0) ? "R" + outstanding : "R" + 0;
 
     if (outstanding < 0) {
-        document.getElementById("txtChange").innerText = "R" + outstanding;
+        document.getElementById("txtChange").innerText = "R" + Math.abs(outstanding);
         document.getElementById("lblChange").innerText = "Change:";
     }
     else {

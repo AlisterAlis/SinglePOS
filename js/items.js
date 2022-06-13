@@ -17,7 +17,7 @@ export class clsItemLine {
     }
     getItemLineHTML (){
         return ` 
-        <div id="${this.rowText}" class="row row-cols-1 row-cols-md-5 mb-0 pt-1 text-center rounded-3" ${(this.rownumber % 2 === 0) ? "style='background: gainsboro'" : "style='background: #f8f8ff'" }>
+        <div id="${this.rowText}" class="row row-cols-1 row-cols-md-5 mb-0 pt-1 text-center rounded-3" ${(this.rownumber % 2 === 0) ? "style='background: #0275d8'" : "style='background: #f8f8ff'" }>
         <div class="col-md-2 p-0 ps-1 "> <!--Barcode-->
           <div class="card mb-1 rounded-3 shadow-sm">
               <div id="lblItemBarcode" class="card-body">
@@ -44,7 +44,7 @@ export class clsItemLine {
               <div class="card-body">
                 <div class="row row-cols-1 row-cols-sm-3 mb-0 text-center">
                   <div class="col">
-                    <button id="btnItemQtyDec${this.rowText}" class="btn btn-primary btn-outline-dark py-0 px-2">-</b>
+                    <button id="btnItemQtyDec${this.rowText}" class="btn btn-warning btn-outline-dark py-0 px-2">-</b>
                   </div>
                   <div id="lblItemQty" class="col">
                     <b>${this.qty}</b>
