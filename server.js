@@ -1,4 +1,19 @@
+var http = require('http');
+var fs = require('fs');
 
+const PORT=80; 
+
+fs.readFile('./index.html', function (err, html) {
+
+    if (err) throw err;    
+
+    http.createServer(function(request, response) {  
+        response.writeHeader(200, {"Content-Type": "text/html"});  
+        response.write(html);  
+        response.end();  
+    }).listen(PORT);
+});
+/*
 var http = require("http"),
 url = require("url"),
 path = require("path"),
@@ -53,3 +68,4 @@ fs.readFile(filename, "binary", function(err, file) {
 }).listen(parseInt(port, 10));
 
 console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
+*/
