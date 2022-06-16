@@ -176,14 +176,14 @@ function DoPaymentCalculations(){
     document.getElementById("inCashPayment").value = document.getElementById("inCashPayment").value.replace(/\D/g,'');
     document.getElementById("inCardPayment").value = document.getElementById("inCardPayment").value.replace(/\D/g,'');
 
-    cashPayment = document.getElementById("inCashPayment").value;
+    cashPayment = Math.abs(document.getElementById("inCashPayment").value);
     cardPayment = clamp(document.getElementById("inCardPayment").value, 0, totalSale);
     
     
     //console.log("Card payment clamp: " +cardPayment);
 
     //Card Payments
-    document.getElementById("inCardPayment").value = Math.clamp
+    document.getElementById("inCardPayment").value = cashPayment
     
 
     document.getElementById("inCardPayment").value = cardPayment;
@@ -209,8 +209,8 @@ function DoPaymentCalculations(){
     }
     
 
-    document.getElementById("inCashPayment").value = "R" + document.getElementById("inCashPayment").value
-    document.getElementById("inCardPayment").value = "R" + document.getElementById("inCardPayment").value;
+    document.getElementById("inCashPayment").value = "R" + Math.abs(document.getElementById("inCashPayment").value)
+    document.getElementById("inCardPayment").value = "R" + Math.abs(document.getElementById("inCardPayment").value);
 
     if (outstanding > 0) {
         document.getElementById("btnFinishSale").classList.remove("btn-success");
