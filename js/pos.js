@@ -1,24 +1,36 @@
-import { clsItemObj, clsItemLine } from './items.js';
+//import { clsItemObj, clsItemLine } from './items.js';
 //let clsItems = require('items.js');
 
 //const fs = require('fs')
 
+const clsItemObj = require('../js/items');
+const items = require('../js/items')
+
+//const items = new items.clsItemLine()
+
+//const items = new lines(
+
+//const author = new Author(req.body.name);
+
+//const clsItems = new items(clsItemObj);
+
 const itemsArr = [
-    new clsItemObj("000001", "First Item", 15),
-    new clsItemObj("000002", "Second Item", 25),
-    new clsItemObj("000003", "Third Item", 35),
-    new clsItemObj("000004", "Forth Item", 45),
-    new clsItemObj("000005", "Fifth Item", 55),
+    new items.clsItemObj("000001", "First Item", 15),
+    new items.clsItemObj("000002", "Second Item", 25),
+    new items.clsItemObj("000003", "Third Item", 35),
+    new items.clsItemObj("000004", "Forth Item", 45),
+    new items.clsItemObj("000005", "Fifth Item", 55),
 ]
 
 
-let lineItem1 = new clsItemLine(itemsArr[0], 1);
-let lineItem2 = new clsItemLine(itemsArr[1], 2, 2);
-let lineItem3 = new clsItemLine(itemsArr[2], 3, 2);
-let lineItem4 = new clsItemLine(itemsArr[3], 4, 2);
-let lineItem5 = new clsItemLine(itemsArr[4], 5, 2);
+let lineItem1 = new items.clsItemLine(itemsArr[0], 1);
+let lineItem2 = new items.clsItemLine(itemsArr[1], 2, 2);
+let lineItem3 = new items.clsItemLine(itemsArr[2], 3, 2);
+let lineItem4 = new items.clsItemLine(itemsArr[3], 4, 2);
+let lineItem5 = new items.clsItemLine(itemsArr[4], 5, 2);
 
 const posRowItems = [lineItem1, lineItem2, lineItem3, lineItem4, lineItem5];
+
 
 function voidLineItem(lineRowNum){
     let hasVoided = false;
@@ -238,46 +250,52 @@ function AddPOSItem(_barcode){
 */   
 //document.getElementById("btnVoid").addEventListener("click", voidLineItem("'test'"));
 
-document.getElementById("frmScanBarcode").addEventListener("submit", function(event) {
-    event.preventDefault();
-    let barcode = document.getElementById("inScanBarcode").value;
-    AddPOSItem(barcode);
-    document.getElementById("inScanBarcode").value = "";
-})
+function initLoad(){
+    document.getElementById("frmScanBarcode").addEventListener("submit", function(event) {
+        event.preventDefault();
+        let barcode = document.getElementById("inScanBarcode").value;
+        AddPOSItem(barcode);
+        document.getElementById("inScanBarcode").value = "";
+    })
+    
+    document.getElementById("frmSearchItem").addEventListener("submit", function(event) {
+        event.preventDefault();
+        SearchItems();
+    })
+    
+    document.getElementById("inSearchBox").addEventListener("input", () => {
+        SearchItems();
+    })
+    
+    document.getElementById("frmCash").addEventListener("submit", function(event) {
+        event.preventDefault();
+        DoPaymentCalculations();
+    })
+    
+    document.getElementById("inCashPayment").addEventListener("change", function(event) {
+        event.preventDefault();
+        DoPaymentCalculations();
+    })
+    
+    document.getElementById("frmCard").addEventListener("submit", function(event) {
+        event.preventDefault();
+        DoPaymentCalculations();
+    })
+    
+    document.getElementById("inCardPayment").addEventListener("change", function(event) {
+        event.preventDefault();
+        DoPaymentCalculations();
+    })
+    
+    document.getElementById("btnFinishSale").addEventListener("click", DrawPOSItems)
+    
+    DrawPOSItems();
+}
 
-document.getElementById("frmSearchItem").addEventListener("submit", function(event) {
-    event.preventDefault();
-    SearchItems();
-})
-
-document.getElementById("inSearchBox").addEventListener("input", () => {
-    SearchItems();
-})
-
-document.getElementById("frmCash").addEventListener("submit", function(event) {
-    event.preventDefault();
-    DoPaymentCalculations();
-})
-
-document.getElementById("inCashPayment").addEventListener("change", function(event) {
-    event.preventDefault();
-    DoPaymentCalculations();
-})
-
-document.getElementById("frmCard").addEventListener("submit", function(event) {
-    event.preventDefault();
-    DoPaymentCalculations();
-})
-
-document.getElementById("inCardPayment").addEventListener("change", function(event) {
-    event.preventDefault();
-    DoPaymentCalculations();
-})
-
-
-document.getElementById("btnFinishSale").addEventListener("click", DrawPOSItems)
-
-DrawPOSItems();
+module.exports = {
+    initLoad : initLoad,
+    DrawPOSItems : DrawPOSItems    
+  }
 
 /*
 function include(file) {

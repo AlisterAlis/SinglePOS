@@ -1,1 +1,7 @@
-Middle
+<h3><u>Recent Books List</u></h3>
+<% books.forEach(book => { %>
+    <div>Author: <%= book.title %></div>
+    <div>Description: <%= book.description %></div>
+    <div>Publish Date: <%= new Date(book.publishDate).toLocaleString().split(',')[0] %></div>
+    <br/>
+<% }); %>

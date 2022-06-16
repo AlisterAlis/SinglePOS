@@ -1,5 +1,5 @@
 
-export class clsItemObj {
+class clsItemObj {
     constructor(_Barcode, _Description, _Price){
         this.barcode = _Barcode;
         this.description = _Description;
@@ -7,7 +7,7 @@ export class clsItemObj {
     }
 }
 
-export class clsItemLine {
+class clsItemLine {
     constructor(_itemObj, _rownumber, _qty = 1){
         this.itemObj = _itemObj;
         this.qty = _qty;
@@ -75,6 +75,10 @@ export class clsItemLine {
     }    
 }
 
+module.exports = {
+  clsItemObj : clsItemObj,
+  clsItemLine : clsItemLine
+}
 //module.exports = {classObj, classLineObj};
 //module.exports = classLineObj
 //module.exports = {ItemObj, ItemLineObj};
